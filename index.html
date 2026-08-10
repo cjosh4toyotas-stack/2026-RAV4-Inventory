@@ -62,6 +62,16 @@
     .f-line a{color:var(--ink);}
   }
 </style>
+<script>
+/* ============================================================
+   MASTER SWITCH — turn the sheet ON or OFF
+   SHEET_LIVE = true   -> sheet shows normally
+   SHEET_LIVE = false  -> sheet is hidden, "check back" message shows
+   To flip it: edit this file on GitHub, change true to false
+   (or false to true), commit. Live in about a minute.
+   ============================================================ */
+const SHEET_LIVE = true;
+</script>
 </head>
 <body>
 <div class="page">
@@ -73,6 +83,12 @@
     <div class="cycle">Factory allocations arrive every two weeks &mdash; the next batch is expected soon. Units below can be claimed today with a deposit.</div>
   </header>
 
+  <div id="offline-msg" style="display:none;margin-top:40px;padding:26px 22px;background:#f6f6f6;border-left:4px solid #EB0A1E;">
+    <p style="font-size:17px;font-weight:bold;">This availability sheet is temporarily offline.</p>
+    <p style="font-size:14px;color:#5a5a5a;margin-top:8px;">We&rsquo;re updating it against the latest factory allocation. For current 2026 RAV4 availability, call or text Josh directly at <a href="tel:3196311461" style="color:#1a1a1a;font-weight:bold;">319-631-1461</a>.</p>
+  </div>
+
+  <div id="sheet-content">
   <section>
     <h2>Arriving This Week</h2>
     <div class="unit">
@@ -119,6 +135,14 @@
     <div class="unit">
       <div class="u-main">
         <div class="u-trim">RAV4 SE</div>
+        <div class="u-color"><span class="swatch sw-icecap"></span>Ice Cap &middot; Black interior</div>
+        <div class="u-equip">Options: Convenience Package (CP) &middot; Weather Package (CY) &middot; Moonroof Package (MR) &middot; All-Weather Liner Package (2T)</div>
+      </div>
+      <div class="u-right"><div class="u-price">$39,659</div></div>
+    </div>
+    <div class="unit">
+      <div class="u-main">
+        <div class="u-trim">RAV4 SE</div>
         <div class="u-color"><span class="swatch sw-black"></span>Midnight Black Metallic &middot; Black interior</div>
         <div class="u-equip">Options: Convenience Package (CP) &middot; Weather Package (CY) &middot; Moonroof Package (MR) &middot; All Weather Floor Liners (63) &middot; Cargo Liner (R5)</div>
       </div>
@@ -139,6 +163,14 @@
         <div class="u-equip">Options: Convenience Package (CP) &middot; Weather Package (CY) &middot; All-Weather Liner Package (2T)</div>
       </div>
       <div class="u-right"><div class="u-price">$38,809</div></div>
+    </div>
+    <div class="unit">
+      <div class="u-main">
+        <div class="u-trim">RAV4 SE</div>
+        <div class="u-color"><span class="swatch sw-blueprint"></span>Blueprint &middot; Black interior</div>
+        <div class="u-equip">Options: Convenience Package (CP) &middot; Weather Package (CY) &middot; All Weather Floor Liners (63) &middot; Door Edge Guards (D5) &middot; Cargo Liner (R5)</div>
+      </div>
+      <div class="u-right"><div class="u-price">$38,974</div></div>
     </div>
     <div class="unit">
       <div class="u-main">
@@ -181,6 +213,8 @@
     <p><strong>This sheet is a snapshot in time and is subject to change at any moment.</strong> Availability changes daily and allocated vehicles are scheduled for production and can be claimed before they are built. Ask us for the full equipment breakdown on any vehicle. If the RAV4 you want isn&rsquo;t listed, we can place a factory order and match you against the next allocation.</p>
   </div>
 
+  </div><!-- /sheet-content -->
+
   <footer>
     <div class="f-name">Josh Hicks &middot; Sales Consultant</div>
     <div class="f-line">McGrath Toyota of Iowa City &middot; 1445 Highway 1 West, Iowa City, IA 52246</div>
@@ -188,5 +222,11 @@
   </footer>
 
 </div>
+<script>
+if (!SHEET_LIVE) {
+  document.getElementById('sheet-content').style.display = 'none';
+  document.getElementById('offline-msg').style.display = 'block';
+}
+</script>
 </body>
 </html>
