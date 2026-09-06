@@ -7,11 +7,11 @@
 <style>
   :root{
     --red:#EB0A1E;
-    --ink:#1a1a1a;
-    --gray:#5a5a5a;
-    --line:#d9d9d9;
-    --bg:#ffffff;
-    --soft:#f6f6f6;
+    --ink:#ffffff;
+    --gray:#b9b9b9;
+    --line:#3a3a3a;
+    --bg:#000000;
+    --soft:#161616;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{font-family:Arial, Helvetica, sans-serif;color:var(--ink);background:var(--bg);line-height:1.45;}
@@ -33,15 +33,21 @@
   .unit:last-child{border-bottom:none;}
   .u-main{min-width:0;}
   .u-trim{font-size:17px;font-weight:bold;}
-  .swatch{display:inline-block;width:13px;height:13px;border-radius:50%;margin-right:7px;vertical-align:-1px;border:1px solid rgba(0,0,0,0.25);}
+  .swatch{display:inline-block;width:13px;height:13px;border-radius:50%;margin-right:7px;vertical-align:-1px;border:1px solid rgba(255,255,255,0.45);}
   .sw-black{background:#0b0b0d;}
   .sw-meteor{background:#b9bcbe;}
   .sw-blueprint{background:#20304f;}
   .sw-icecap{background:#f5f6f7;}
   .sw-ruby{background:#8e1b2f;}
   .sw-storm{background:#6e7a86;}
+  .sw-pearl{background:#f4f3ee;}
+  .unit.sold .u-trim,.unit.sold .u-color,.unit.sold .u-equip,.unit.sold .u-price{opacity:0.55;}
+  .avail-badge{display:inline-block;background:#0c8a3e;color:#fff;font-size:11px;font-weight:bold;letter-spacing:2px;padding:3px 10px;margin-top:2px;box-shadow:0 0 12px rgba(34,197,94,0.9),0 0 4px rgba(34,197,94,0.9);animation:glow 1.6s ease-in-out infinite alternate;}
+  @keyframes glow{from{box-shadow:0 0 5px rgba(34,197,94,0.6);}to{box-shadow:0 0 16px rgba(34,197,94,1);}}
+  .sold-badge{display:inline-block;background:var(--red);color:#fff;font-size:11px;font-weight:bold;letter-spacing:2px;padding:3px 10px;margin-top:2px;}
+  .soldnote{font-size:12.5px;color:var(--gray);margin:6px 0 2px;}
   .u-color{font-size:14px;color:var(--ink);margin-top:2px;}
-  .u-timeline{font-size:12px;color:#1a1a1a;margin-top:4px;font-weight:bold;}
+  .u-timeline{font-size:12px;color:#ffffff;margin-top:4px;font-weight:bold;}
   .u-timeline span{color:#EB0A1E;}
   .pipe-wrap{padding:10px 0 14px;border-bottom:1px solid var(--line);}
   .pipe-head{font-size:12px;margin:2px 0 2px;}
@@ -64,7 +70,7 @@
   .note{margin-top:24px;font-size:13px;color:var(--gray);border-top:1px solid var(--line);padding-top:14px;}
   .note p{margin-bottom:8px;}
 
-  footer{margin-top:26px;background:var(--ink);color:#fff;padding:18px 20px;}
+  footer{margin-top:26px;background:#141414;color:#fff;border-top:4px solid var(--red);padding:18px 20px;}
   .f-name{font-size:16px;font-weight:bold;}
   .f-line{font-size:13px;margin-top:4px;color:#e8e8e8;}
   .f-line a{color:#fff;text-decoration:none;font-weight:bold;}
@@ -76,9 +82,6 @@
   }
   @media print{
     .page{padding:0;}
-    footer{background:none;color:var(--ink);border-top:4px solid var(--red);padding:14px 0 0;}
-    .f-line{color:var(--ink);}
-    .f-line a{color:var(--ink);}
   }
 </style>
 <script>
@@ -100,14 +103,14 @@ const SHEET_LIVE = true;
     <div class="head-text">
     <div class="dealer">McGrath Toyota of Iowa City</div>
     <h1>2026 RAV4 Availability</h1>
-    <div class="asof">Updated <strong>September 5, 2026</strong> &middot; All prices are MSRP</div>
+    <div class="asof">Updated <strong>September 6, 2026</strong> &middot; All prices are MSRP</div>
     <div class="cycle">Factory allocations arrive every two weeks &mdash; the next batch is expected soon. Units below can be claimed today with a deposit.</div>
     </div>
   </header>
 
-  <div id="offline-msg" style="display:none;margin-top:40px;padding:26px 22px;background:#f6f6f6;border-left:4px solid #EB0A1E;">
+  <div id="offline-msg" style="display:none;margin-top:40px;padding:26px 22px;background:#161616;border-left:4px solid #EB0A1E;">
     <p style="font-size:17px;font-weight:bold;">This availability sheet is temporarily offline.</p>
-    <p style="font-size:14px;color:#5a5a5a;margin-top:8px;">We&rsquo;re updating it against the latest factory allocation. For current 2026 RAV4 availability, call or text Josh directly at <a href="tel:3196311461" style="color:#1a1a1a;font-weight:bold;">319-631-1461</a>.</p>
+    <p style="font-size:14px;color:#b9b9b9;margin-top:8px;">We&rsquo;re updating it against the latest factory allocation. For current 2026 RAV4 availability, call or text Josh directly at <a href="tel:3196311461" style="color:#ffffff;font-weight:bold;">319-631-1461</a>.</p>
   </div>
 
   <div id="sheet-content">
@@ -121,6 +124,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$40,244</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV6TU40L500</div>
       </div>
     </div>
@@ -132,6 +136,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$41,099</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV1TU40M439</div>
       </div>
     </div>
@@ -143,6 +148,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$41,099</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV1TU41Q650</div>
       </div>
     </div>
@@ -154,6 +160,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$41,099</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV2TU40M059</div>
       </div>
     </div>
@@ -165,6 +172,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$41,099</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV3TU41R248</div>
       </div>
     </div>
@@ -176,6 +184,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$41,099</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV4TU41R470</div>
       </div>
     </div>
@@ -187,6 +196,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$41,099</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV7TU41Q331</div>
       </div>
     </div>
@@ -198,6 +208,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$41,949</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV4TU41R159</div>
       </div>
     </div>
@@ -209,6 +220,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$44,229</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV7TU39G061</div>
       </div>
     </div>
@@ -220,6 +232,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$44,229</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV8TU38G929</div>
       </div>
     </div>
@@ -231,6 +244,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$44,389</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV1TU38G545</div>
       </div>
     </div>
@@ -242,6 +256,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$45,509</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV3TU36G250</div>
       </div>
     </div>
@@ -253,6 +268,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$46,389</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV0TU40M271</div>
       </div>
     </div>
@@ -264,6 +280,7 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$46,389</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN 4T36CRAV4TU41R291</div>
       </div>
     </div>
@@ -275,7 +292,145 @@ const SHEET_LIVE = true;
       </div>
       <div class="u-right">
         <div class="u-price">$45,118</div>
+        <div class="avail-badge">AVAILABLE</div>
         <div class="u-vin">Temp. VIN JTM7ERAV7T135CM28</div>
+      </div>
+    </div>
+  </section>
+
+    <section>
+    <h2>2026 RAV4 XLE Premium &mdash; Sold</h2>
+    <div class="soldnote">Every XLE Premium in our recent pipeline has found an owner &mdash; most before arrival. If you want one, the next allocation is your window: tell us your spec and we&rsquo;ll match you the day it lands.</div>
+    <div class="unit sold">
+      <div class="u-main">
+        <div class="u-trim">RAV4 XLE Premium</div>
+        <div class="u-color"><span class="swatch sw-ruby"></span>Ruby Flare Pearl &middot; Interior EE10</div>
+        <div class="u-equip">Options: Weather Package (CY) &middot; Driver Assist Package (DA) &middot; Premium Paint (PC) &middot; Panoramic Moonroof Package (SR) &middot; All-Weather Liner Package (2T) &middot; Door Edge Guards (D5) &middot; Mudguards (MF)</div>
+      </div>
+      <div class="u-right">
+        <div class="u-price">$43,109</div>
+        <div class="sold-badge">SOLD</div>
+      </div>
+    </div>
+    <div class="unit sold">
+      <div class="u-main">
+        <div class="u-trim">RAV4 XLE Premium</div>
+        <div class="u-color"><span class="swatch sw-storm"></span>Storm Cloud &middot; Interior EE20</div>
+        <div class="u-equip">Options: All-Weather Liner Package (2T)</div>
+      </div>
+      <div class="u-right">
+        <div class="u-price">$39,434</div>
+        <div class="sold-badge">SOLD</div>
+      </div>
+    </div>
+    <div class="unit sold">
+      <div class="u-main">
+        <div class="u-trim">RAV4 XLE Premium</div>
+        <div class="u-color"><span class="swatch sw-ruby"></span>Ruby Flare Pearl &middot; Interior EE10</div>
+        <div class="u-equip">Options: Weather Package (CY) &middot; Premium Paint (PC) &middot; All-Weather Liner Package (2T)</div>
+      </div>
+      <div class="u-right">
+        <div class="u-price">$40,284</div>
+        <div class="sold-badge">SOLD</div>
+      </div>
+    </div>
+    <div class="unit sold">
+      <div class="u-main">
+        <div class="u-trim">RAV4 XLE Premium</div>
+        <div class="u-color"><span class="swatch sw-pearl"></span>Wind Chill Pearl &middot; Interior EE10</div>
+        <div class="u-equip">Options: Weather Package (CY) &middot; Driver Assist Package (DA) &middot; Premium Paint (PC) &middot; Panoramic Moonroof Package (SR) &middot; All-Weather Liner Package (2T) &middot; Illumination Package (4A) &middot; Body Side Moldings (BM) &middot; Door Edge Guards (D5) &middot; EG &middot; Mudguards (MF)</div>
+      </div>
+      <div class="u-right">
+        <div class="u-price">$44,649</div>
+        <div class="sold-badge">SOLD</div>
+      </div>
+    </div>
+    <div class="unit sold">
+      <div class="u-main">
+        <div class="u-trim">RAV4 XLE Premium</div>
+        <div class="u-color"><span class="swatch sw-pearl"></span>Wind Chill Pearl &middot; Interior EE40</div>
+        <div class="u-equip">Options: Weather Package (CY) &middot; Premium Paint (PC) &middot; All-Weather Liner Package (2T)</div>
+      </div>
+      <div class="u-right">
+        <div class="u-price">$40,284</div>
+        <div class="sold-badge">SOLD</div>
+      </div>
+    </div>
+    <div class="unit sold">
+      <div class="u-main">
+        <div class="u-trim">RAV4 XLE Premium</div>
+        <div class="u-color"><span class="swatch sw-pearl"></span>Wind Chill Pearl &middot; Interior EE40</div>
+        <div class="u-equip">Options: Weather Package (CY) &middot; Premium Paint (PC) &middot; Panoramic Moonroof Package (SR) &middot; All-Weather Liner Package (2T) &middot; Illumination Package (4A) &middot; Body Side Moldings (BM) &middot; Door Edge Guards (D5) &middot; EG &middot; Mudguards (MF)</div>
+      </div>
+      <div class="u-right">
+        <div class="u-price">$43,999</div>
+        <div class="sold-badge">SOLD</div>
+      </div>
+    </div>
+    <div class="unit sold">
+      <div class="u-main">
+        <div class="u-trim">RAV4 XLE Premium</div>
+        <div class="u-color"><span class="swatch sw-black"></span>Midnight Black Metallic &middot; Interior EE40</div>
+        <div class="u-equip">Options: Weather Package (CY) &middot; All-Weather Liner Package (2T)</div>
+      </div>
+      <div class="u-right">
+        <div class="u-price">$39,809</div>
+        <div class="sold-badge">SOLD</div>
+      </div>
+    </div>
+    <div class="unit sold">
+      <div class="u-main">
+        <div class="u-trim">RAV4 XLE Premium</div>
+        <div class="u-color"><span class="swatch sw-ruby"></span>Ruby Flare Pearl &middot; Interior EE40</div>
+        <div class="u-equip">Options: Weather Package (CY) &middot; Driver Assist Package (DA) &middot; Premium Paint (PC) &middot; Panoramic Moonroof Package (SR) &middot; All-Weather Liner Package (2T) &middot; Door Edge Guards (D5)</div>
+      </div>
+      <div class="u-right">
+        <div class="u-price">$42,949</div>
+        <div class="sold-badge">SOLD</div>
+      </div>
+    </div>
+    <div class="unit sold">
+      <div class="u-main">
+        <div class="u-trim">RAV4 XLE Premium</div>
+        <div class="u-color"><span class="swatch sw-meteor"></span>Meteor Shower &middot; Interior EE20</div>
+        <div class="u-equip">Options: Weather Package (CY) &middot; All-Weather Liner Package (2T)</div>
+      </div>
+      <div class="u-right">
+        <div class="u-price">$39,809</div>
+        <div class="sold-badge">SOLD</div>
+      </div>
+    </div>
+    <div class="unit sold">
+      <div class="u-main">
+        <div class="u-trim">RAV4 XLE Premium</div>
+        <div class="u-color"><span class="swatch sw-meteor"></span>Meteor Shower &middot; Interior EE40</div>
+        <div class="u-equip">Options: Weather Package (CY) &middot; All-Weather Liner Package (2T)</div>
+      </div>
+      <div class="u-right">
+        <div class="u-price">$39,809</div>
+        <div class="sold-badge">SOLD</div>
+      </div>
+    </div>
+    <div class="unit sold">
+      <div class="u-main">
+        <div class="u-trim">RAV4 XLE Premium</div>
+        <div class="u-color"><span class="swatch sw-blueprint"></span>Blueprint &middot; Interior EE10</div>
+        <div class="u-equip">Options: All-Weather Liner Package (2T) &middot; Low Profile Cross Bars (3T)</div>
+      </div>
+      <div class="u-right">
+        <div class="u-price">$39,754</div>
+        <div class="sold-badge">SOLD</div>
+      </div>
+    </div>
+    <div class="unit sold">
+      <div class="u-main">
+        <div class="u-trim">RAV4 XLE Premium</div>
+        <div class="u-color"><span class="swatch sw-blueprint"></span>Blueprint &middot; Interior EE20</div>
+        <div class="u-equip">Options: Weather Package (CY) &middot; All-Weather Liner Package (2T) &middot; Door Edge Guards (D5) &middot; Mudguards (MF)</div>
+      </div>
+      <div class="u-right">
+        <div class="u-price">$40,134</div>
+        <div class="sold-badge">SOLD</div>
       </div>
     </div>
   </section>
